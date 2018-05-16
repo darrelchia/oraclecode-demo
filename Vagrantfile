@@ -25,7 +25,7 @@ Vagrant.configure("2") do |config|
   # config.vm.box = "darrelchia/terraform-dev-env"
   # config.vm.box_version = "1.0.0"
   
-  config.vm.synced_folder "C:\\Users\\dchia\\Desktop\\OracleCode\\demo", "/home/vagrant/workspace/", group: "vagrant", owner: "vagrant", mount_options: ["dmode=750", "fmode=750"]
+  config.vm.synced_folder "C:\\Users\dchia\\Desktop\\OracleCode\\oraclecode-demo\\oraclecode-demo", "/home/vagrant/workspace/", group: "vagrant", owner: "vagrant", mount_options: ["dmode=750", "fmode=750"]
 
   config.vm.provider "virtualbox" do |vb|
     # vb.gui = false
