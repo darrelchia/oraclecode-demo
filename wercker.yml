@@ -35,4 +35,4 @@ restart-occs:
         occs_password: $OCCS_PASSWORD
         rest_server_url: $OCCS_REST_SERVER
         function: stop
-        deployment_name: oraclecode-sg
+        deployment_name: oraclecode-demo
