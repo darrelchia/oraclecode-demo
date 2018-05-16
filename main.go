@@ -15,7 +15,7 @@ type citiesResponse struct {
 
 func eventHandler(res http.ResponseWriter, req *http.Request) {
 
-	mockServer := "https://private-a62371-oraclecode1.apiary-mock.com"
+	mockServer := "https://private-a62371-oraclecodesolution.apiary-mock.com"
 
 	apiary_client := &http.Client{}
 	id := strings.TrimPrefix(req.URL.Path, "/events/")
@@ -24,7 +24,7 @@ func eventHandler(res http.ResponseWriter, req *http.Request) {
 		id = fmt.Sprintf("/%s", id)
 	}
 
-	endpoint := fmt.Sprintf("%d/events%s", mockServer, id)
+	endpoint := fmt.Sprintf("%s/events%s", mockServer, id)
 
 	apiary_req, _ := http.NewRequest("GET", endpoint, nil)
 	apiary_resp, err := apiary_client.Do(apiary_req)
