@@ -1,0 +1,39 @@
+box: 
+  id: golang
+  port:
+  - 5000
+
+build:
+  steps:
+    - wercker/golint
+    - script:
+        name: go test
+        code: |
+          go test ./...
+    - script:
+        name: go build
+        code: |
+          go build -o oraclecode-demo
+          
+push-to-registry:
+  steps:
+    # Push to public docker repo
+    - internal/docker-push:
+        ports: "5000"
+        username: $DOCKERHUB_USERNAME
+        password: $DOCKERHUB_PASSWORD
+        tag: latest
+        repository: $DOCKERHUB_USERNAME/oraclecode-demo
+        registry: https://index.docker.io/v2/
+        cmd: /pipeline/source/oraclecode-demo
+
+restart-occs:
+  steps:
+    # Manage Oracle Container Cloud Service container
+    - peternagy/oracle-occs-container-util:
+        occs_user: $OCCS_USERNAME
+        occs_password: $OCCS_PASSWORD
+        rest_server_url: $OCCS_REST_SERVER
+        function: stop
+        deployment_name: oraclecode-sg
+
